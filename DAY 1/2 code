@@ -1,0 +1,43 @@
+2. GOOGLE INTERVIEW QUESTION
+~ Statement- Maximum length of subarray with absolute difference between negative and positive number as atmost k.
+~ My Java Solution-
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+int[] arr={2,5,6,7,8,9};
+	int k=5;
+	int ans=func(arr,k);
+	System.out.println(ans);
+	}
+	public static int func(int[] arr, int k)
+	{   if(arr.length==0 || k==0) return 0;
+	if(arr.length==1) return arr[0]<=k ? 1:0;
+	    int i=-1; int j=-1; int diff=0; int maxlen=1;
+	    int n=arr.length;
+	    while(i<n)
+	    {  
+	        while(i<=n-1)
+	        {  i++; 
+	            if(i==n) return maxlen;
+	            if(j!=-1)diff=arr[i]-arr[j];
+	            else diff=arr[i]-arr[0];
+	          
+	            if(diff<=k) maxlen=Math.max(maxlen,i-j);
+	            if(diff>k) break;  }
+        while(j<i )
+	        {   j++; 
+	            diff=arr[i]-arr[j];
+	            if(diff<=k)
+	            {maxlen=Math.max(maxlen,i-j);
+	          // System.out.print(maxlen);
+	           break;} }
+             
+	    }
+	    return maxlen;
+	}
+}
+
