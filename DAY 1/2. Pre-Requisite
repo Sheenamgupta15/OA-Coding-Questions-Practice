@@ -1,0 +1,42 @@
+2. Pre-Requisite- 
+~ Question- 
+maximum length of subarray with sum atmost k
+
+~ My Java Code-
+import java.io.*;
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+int[] arr={2,5,8,8,5,8};
+	int k=7;
+	int ans=func(arr,k);
+	System.out.println(ans);
+	}
+	public static int func(int[] arr, int k)
+	{   if(arr.length==0 || k==0) return 0;
+	if(arr.length==1) return arr[0]<=k ? 1:0;
+	    int i=-1; int j=-1; int sum=0; int maxlen=1;
+	    int n=arr.length;
+	    while(i<n)
+	    {  
+	        while(i<=n-1 && sum<=k)
+	        {  i++; 
+	            if(i==n) return maxlen;
+	            sum+=arr[i];
+	          
+	            if(sum<=k) maxlen=Math.max(maxlen,i-j);
+	            if(sum>k) break;  }
+        while(j<i && sum>k)
+	        {   j++; 
+	            sum-=arr[j];
+	            if(sum<=k)
+	            {maxlen=Math.max(maxlen,i-j);
+	          // System.out.print(maxlen);
+	           break;} }
+             
+	    }
+	    return maxlen;
+	}
+}
+
